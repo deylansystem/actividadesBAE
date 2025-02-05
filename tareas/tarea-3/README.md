@@ -17,6 +17,8 @@ En un sistema de biblioteca, cada libro tiene un número único de identificaci�
 
  </details>
 
+##
+
 - Ejercicio 2:
 
 En una universidad, cada estudiante tiene asignado un único locker o casillero para su uso durante el semestre. El número de casillero solo puede estar asociado a un único estudiante. Diseña las tablas y su relación.
