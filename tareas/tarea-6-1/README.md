@@ -29,13 +29,21 @@
 
 2. Aplicar **2FN**, asegurando que cada campo dependa completamente de la clave primaria.
 
+### **Tabla: Productos**
+
+Productos:
+| ID_Producto | Nombre_Producto | Categoría   | Precio |
+|-------------|-----------------|-------------|--------|
+| 1           | Laptop          | Tecnología  | 1000   |
+| 2           | Mouse           | Accesorios  | 25     |
+
 ### **Tabla: Proveedores**
 
 | ID_Producto | Proveedores 
-|------------|----------------|
-| 1          | Dell        |
-| 1          | HP        |
-| 2          | Logitech        |
+|------------|---------------|
+| 1          | Dell          |
+| 1          | HP            |
+| 2          | Logitech      |
 
 
 > Verifica generando el modelo Entidad/Relación
