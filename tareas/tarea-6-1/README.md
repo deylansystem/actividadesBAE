@@ -406,7 +406,7 @@
 
 1. Aplicar **1FN**, eliminando valores multivaluados en "Miembros".
 
-### **Tabla Inicial: Proyectos**
+### **Tabla: Proyectos**
 
 | ID_Proyecto| Nombre      | Miembros       | Presupuesto|
 |------------|-------------|----------------|------------|
