@@ -1,6 +1,6 @@
 <div align="justify">
 
-# <img src=../../../../../images/computer.png width="40"> Tema 3
+# `>_` Tema 3
 
 
 creación y manipulación de una base de datos SQLite3 desde la línea de comandos.
