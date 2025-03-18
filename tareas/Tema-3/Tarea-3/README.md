@@ -441,7 +441,7 @@ Realiza las siguientes consultas, y muestra el resultado obtenido:
   - Empleados cuyos nombres contienen la letra 'a' y tienen salarios ordenados de manera ascendente.
   `>_`
   ```sh
-  sqlite> SELECT * FROM empleados WHERE nombre LIKE '%a%' ORDER BY salario ASC;
+  sqlite> SELECT * FROM empleados WHERE nombre REGEXP 'a' ORDER BY salario ASC;
     +----+-----------+---------+------------------+
     | id |  nombre   | salario |   departamento   |
     +----+-----------+---------+------------------+
