@@ -494,7 +494,7 @@ Realiza las siguientes consultas, y muestra el resultado obtenido:
   - Empleados cuyos nombres comienzan con 'M' o 'N' y tienen salarios superiores a 50000.
   `>_`
   ```sh
-  sqlite> SELECT * FROM empleados WHERE (nombre LIKE 'M%' OR nombre LIKE 'N%') AND salario > 50000;
+  sqlite> SELECT * FROM empleados WHERE nombre REGEXP '^[MN]' AND salario > 50000;
     +----+---------+---------+--------------+
     | id | nombre  | salario | departamento |
     +----+---------+---------+--------------+
@@ -554,7 +554,7 @@ Realiza las siguientes consultas, y muestra el resultado obtenido:
   - Empleados cuyos nombres terminan con 'o' o 'a' y están en el departamento 'Ventas'.
   `>_`
   ```sh
-  sqlite> SELECT * FROM empleados WHERE (nombre LIKE '%o' OR nombre LIKE '%a') AND departamento = 'Ventas';
+  sqlite> SELECT * FROM empleados WHERE nombre REGEXP '[oa]$' AND departamento = 'Ventas';
     +----+---------+---------+--------------+
     | id | nombre  | salario | departamento |
     +----+---------+---------+--------------+
@@ -587,11 +587,12 @@ Realiza las siguientes consultas, y muestra el resultado obtenido:
   - Empleados en el departamento 'Recursos Humanos' con nombres que no contienen la letra 'e'.
   `>_`
   ```sh
-    sqlite> SELECT * FROM empleados WHERE departamento = 'Recursos Humanos' AND nombre NOT LIKE '%e%' AND nombre NOT LIKE '%é%';
+    sqlite> SELECT * FROM empleados WHERE departamento = 'Recursos Humanos' AND nombre NOT REGEXP 'e';
     +----+----------+---------+------------------+
     | id |  nombre  | salario |   departamento   |
     +----+----------+---------+------------------+
     | 4  | Ana      | 48000.0 | Recursos Humanos |
+    | 13 | Andrés   | 60000.0 | Recursos Humanos |
     | 16 | Patricia | 47000.0 | Recursos Humanos |
     +----+----------+---------+------------------+
 
