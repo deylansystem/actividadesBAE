@@ -8,8 +8,6 @@ creación y manipulación de una base de datos SQLite3 desde la línea de comand
 
 ### Paso 1: Creación de la BBDD
 
-Crea con el siguente contenido el fichero __supermercado-dump.sql__.
-
 ```sh
 sqlite3 supermercado-dump.db
 SQLite version 3.49.1 2025-02-18 13:38:58
