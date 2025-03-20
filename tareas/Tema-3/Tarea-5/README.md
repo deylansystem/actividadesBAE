@@ -4,117 +4,117 @@
 
 creación y manipulación de una base de datos SQLite3 desde la línea de comandos_.
 
-## Ejercicio 4
+## Ejercicio 5
 
-### Paso 1: Creación de la BBDD
+### Paso 0: Creación de la BBDD
 
 ```sh
-sqlite3 supermercado-dump.db
+sqlite3 base-datos-libros.db
 SQLite version 3.49.1 2025-02-18 13:38:58
 Enter ".help" for usage hints.
-sqlite> CREATE TABLE productos (
-    id ICREATE TABLE productos (
-    id INTEGER PRIMARY KEY,
-    nombre TEXT,
-    categoria TEXT,
-    precio REAL
+sqlite> CREATE TABLE IF NOT EXISTS libro (
+    codigo INTEGER PRIMARY KEY,
+    titulo TEXT,
+    autor_id INTEGER,
+    editorial TEXT,
+    precio REAL,
+    FOREIGN KEY (autor_id) REFERENCES autor(id)
 );
-
-CREATE TABLE ventas (
+sqlite> CREATE TABLE IF NOT EXISTS autor (
     id INTEGER PRIMARY KEY,
-    id_producto INTEGER,
-    cantidad INTEGER,
-    fecha DATE,
-    FOREIGN KEY (id_producto) REFERENCES productos(id)
+    nombre TEXT
 );
-sqlite> INSERT INTO productos (id, nombre, categoria, precio) VALUES 
-    (1, 'Arroz', 'Alimentos', 2.5),
-    (2, 'Leche', 'Lácteos', 1.8),
-    (3, 'Pan', 'Panadería', 1.2),
-    (4, 'Manzanas', 'Frutas', 3.0),
-    (5, 'Pollo', 'Carnes', 5.5),
-    (6, 'Huevos', 'Lácteos', 1.0),
-    (7, 'Yogurt', 'Lácteos', 2.0),
-    (8, 'Tomates', 'Verduras', 2.2),
-    (9, 'Queso', 'Lácteos', 4.0),
-    (10, 'Cereal', 'Desayuno', 3.5),
-    (11, 'Papel Higiénico', 'Hogar', 1.5),
-    (12, 'Cepillo de Dientes', 'Higiene', 2.0),
-    (13, 'Detergente', 'Limpieza', 2.8),
-    (14, 'Galletas', 'Snacks', 1.7),
-    (15, 'Aceite de Oliva', 'Cocina', 4.5),
-    (16, 'Café', 'Bebidas', 5.0),
-    (17, 'Sopa enlatada', 'Conservas', 2.3),
-    (18, 'Jabón de Baño', 'Higiene', 1.2),
-    (19, 'Botellas de Agua', 'Bebidas', 1.0),
-    (20, 'Cerveza', 'Bebidas', 3.8);
+sqlite> INSERT INTO autor (nombre) VALUES
+    ('J.K. Rowling'),
+    ('Stephen King'),
+    ('George Orwell'),
+    ('Jane Austen'),
+    ('Agatha Christie');
 
-INSERT INTO ventas (id_producto, cantidad, fecha) VALUES 
-    (1, 5, '2024-01-17'),
-    (2, 3, '2024-01-17'),
-    (4, 2, '2024-01-17'),
-    (5, 1, '2024-01-17'),
-    (6, 10, '2024-01-18'),
-    (8, 4, '2024-01-18'),
-    (10, 2, '2024-01-18'),
-    (14, 7, '2024-01-19'),
-    (16, 3, '2024-01-19'),
-    (18, 6, '2024-01-20');
-sqllite> SELECT * FROM productos;
-+----+--------------------+-----------+--------+
-| id |       nombre       | categoria | precio |
-+----+--------------------+-----------+--------+
-| 1  | Arroz              | Alimentos | 2.5    |
-| 2  | Leche              | Lácteos   | 1.8    |
-| 3  | Pan                | Panadería | 1.2    |
-| 4  | Manzanas           | Frutas    | 3.0    |
-| 5  | Pollo              | Carnes    | 5.5    |
-| 6  | Huevos             | Lácteos   | 1.0    |
-| 7  | Yogurt             | Lácteos   | 2.0    |
-| 8  | Tomates            | Verduras  | 2.2    |
-| 9  | Queso              | Lácteos   | 4.0    |
-| 10 | Cereal             | Desayuno  | 3.5    |
-| 11 | Papel Higiénico    | Hogar     | 1.5    |
-| 12 | Cepillo de Dientes | Higiene   | 2.0    |
-| 13 | Detergente         | Limpieza  | 2.8    |
-| 14 | Galletas           | Snacks    | 1.7    |
-| 15 | Aceite de Oliva    | Cocina    | 4.5    |
-| 16 | Café               | Bebidas   | 5.0    |
-| 17 | Sopa enlatada      | Conservas | 2.3    |
-| 18 | Jabón de Baño      | Higiene   | 1.2    |
-| 19 | Botellas de Agua   | Bebidas   | 1.0    |
-| 20 | Cerveza            | Bebidas   | 3.8    |
-+----+--------------------+-----------+--------+
-sqlite> SELECT * FROM ventas;
-+----+-------------+----------+------------+
-| id | id_producto | cantidad |   fecha    |
-+----+-------------+----------+------------+
-| 1  | 1           | 5        | 2024-01-17 |
-| 2  | 2           | 3        | 2024-01-17 |
-| 3  | 4           | 2        | 2024-01-17 |
-| 4  | 5           | 1        | 2024-01-17 |
-| 5  | 6           | 10       | 2024-01-18 |
-| 6  | 8           | 4        | 2024-01-18 |
-| 7  | 10          | 2        | 2024-01-18 |
-| 8  | 14          | 7        | 2024-01-19 |
-| 9  | 16          | 3        | 2024-01-19 |
-| 10 | 18          | 6        | 2024-01-20 |
-+----+-------------+----------+------------+
+INSERT INTO libro (titulo, autor_id, editorial, precio) VALUES
+    ('The Great Gatsby', 6, 'Charles Scribner''s Sons', 20.99),
+    ('To Kill a Mockingbird', 7, 'J.B. Lippincott & Co.', 15.95),
+    ('The Catcher in the Rye', 8, 'Little, Brown and Company', 18.75),
+    ('One Hundred Years of Solitude', 9, 'Harper & Row', 22.50),
+    ('Brave New World', 3, 'Chatto & Windus', 17.99),
+    ('The Hobbit', 10, 'George Allen & Unwin', 24.99),
+    ('The Lord of the Rings', 10, 'George Allen & Unwin', 35.50),
+    ('The Chronicles of Narnia', 11, 'Geoffrey Bles', 28.99),
+    ('The Odyssey', 12, 'Homer', 14.95),
+    ('The Iliad', 12, 'Homer', 14.95),
+    ('Moby-Dick', 13, 'Harper & Brothers', 19.99),
+    ('The Road', 14, 'Alfred A. Knopf', 16.75),
+    ('The Grapes of Wrath', 15, 'The Viking Press', 21.50),
+    ('Wuthering Heights', 16, 'Emily Brontë', 12.99),
+    ('The Old Man and the Sea', 17, 'Charles Scribner''s Sons', 18.95),
+    ('The Count of Monte Cristo', 18, 'Pétion', 27.99),
+    ('The Picture of Dorian Gray', 19, 'Ward, Lock, and Company', 14.50),
+    ('The Adventures of Sherlock Holmes', 20, 'George Newnes', 16.99),
+    ('Crime and Punishment', 30, 'The Russian Messenger', 19.99);.75),, 13.25),
+sqlite> .mode table
+sqlite> SELECT * FROM autor;
++----+-----------------+
+| id |     nombre      |
++----+-----------------+
+| 1  | J.K. Rowling    |
+| 2  | Stephen King    |
+| 3  | George Orwell   |
+| 4  | Jane Austen     |
+| 5  | Agatha Christie |
++----+-----------------+
+sqlite> SELECT * FROM libro;
++--------+-----------------------------------+----------+---------------------------------------------+--------+
+| codigo |              titulo               | autor_id |                  editorial                  | precio |
++--------+-----------------------------------+----------+---------------------------------------------+--------+
+| 1      | The Great Gatsby                  | 6        | Charles Scribner's Sons                     | 20.99  |
+| 2      | To Kill a Mockingbird             | 7        | J.B. Lippincott & Co.                       | 15.95  |
+| 3      | The Catcher in the Rye            | 8        | Little, Brown and Company                   | 18.75  |
+| 4      | One Hundred Years of Solitude     | 9        | Harper & Row                                | 22.5   |
+| 5      | Brave New World                   | 3        | Chatto & Windus                             | 17.99  |
+| 6      | The Hobbit                        | 10       | George Allen & Unwin                        | 24.99  |
+| 7      | The Lord of the Rings             | 10       | George Allen & Unwin                        | 35.5   |
+| 8      | The Chronicles of Narnia          | 11       | Geoffrey Bles                               | 28.99  |
+| 9      | The Odyssey                       | 12       | Homer                                       | 14.95  |
+| 10     | The Iliad                         | 12       | Homer                                       | 14.95  |
+| 11     | Moby-Dick                         | 13       | Harper & Brothers                           | 19.99  |
+| 12     | The Road                          | 14       | Alfred A. Knopf                             | 16.75  |
+| 13     | The Grapes of Wrath               | 15       | The Viking Press                            | 21.5   |
+| 14     | Wuthering Heights                 | 16       | Emily Brontë                                | 12.99  |
+| 15     | The Old Man and the Sea           | 17       | Charles Scribner's Sons                     | 18.95  |
+| 16     | The Count of Monte Cristo         | 18       | Pétion                                      | 27.99  |
+| 17     | The Picture of Dorian Gray        | 19       | Ward, Lock, and Company                     | 14.5   |
+| 18     | The Adventures of Sherlock Holmes | 20       | George Newnes                               | 16.99  |
+| 19     | Frankenstein                      | 21       | Lackington, Hughes, Harding, Mavor, & Jones | 13.25  |
+| 20     | Alice's Adventures in Wonderland  | 22       | Macmillan                                   | 11.5   |
+| 21     | The Prince                        | 23       | Niccolò Machiavelli                         | 10.99  |
+| 22     | Don Quixote                       | 24       | Francisco de Robles                         | 26.75  |
+| 23     | The Divine Comedy                 | 25       | Dante Alighieri                             | 20.5   |
+| 24     | Anna Karenina                     | 26       | The Russian Messenger                       | 23.99  |
+| 25     | Les Misérables                    | 27       | A. Lacroix, Verboeckhoven & Cie.            | 29.75  |
+| 26     | The Jungle Book                   | 28       | Macmillan Publishers                        | 14.99  |
+| 27     | The Wind in the Willows           | 29       | Methuen & Co.                               | 17.5   |
+| 28     | War and Peace                     | 26       | The Russian Messenger                       | 33.25  |
+| 29     | Crime and Punishment              | 30       | The Russian Messenger                       | 19.99  |
++--------+-----------------------------------+----------+---------------------------------------------+--------+
 sqlite> .output supermercado-dump.sql
 sqlite> .dump
 sqlite> .exit
 
+sqlite3 tarea5.db
+SQLite version 3.49.1 2025-02-18 13:38:58
+Enter ".help" for usage hints.
+sqlite> .read base-datos-libros.sql
+sqlite> .exit
+
 ```
   
-### Paso 2 Lectura del fichero sql.
+### Paso 1 Selección de libros cuyo título comienza con "H".
 
 
 ```sh
-sqlite3 tarea4.db
-SQLite version 3.49.1 2025-02-18 13:38:58
-Enter ".help" for usage hints.
-sqlite> .read supermercado-dump.sql
-sqlite> .exit
+    sqlite> SELECT * FROM libro WHERE titulo REGEXP '^H';
+    sqlite> 
+
 ```
 
 ### Paso 3: Responde a las siguientes cuestiones
@@ -429,6 +429,188 @@ Realiza las siguientes consultas, y muestra el resultado obtenido:
     | 18 | Jabón de Baño      | 6             |
     +----+--------------------+---------------+
     sqlite>
+```
+```sh
+sqlite> SELECT * FROM productos WHERE precio BETWEEN 3 AND 4;
++----+----------+-----------+--------+
+| id |  nombre  | categoria | precio |
++----+----------+-----------+--------+
+| 4  | Manzanas | Frutas    | 3.0    |
+| 9  | Queso    | Lácteos   | 4.0    |
+| 10 | Cereal   | Desayuno  | 3.5    |
+| 20 | Cerveza  | Bebidas   | 3.8    |
++----+----------+-----------+--------+
+sqlite>
+
+sqlite> SELECT nombre, categoria FROM productos ORDER BY categoria;
++--------------------+-----------+
+|       nombre       | categoria |
++--------------------+-----------+
+| Arroz              | Alimentos |
+| Cereal             | Desayuno  |
+| Manzanas           | Frutas    |
+| Pollo              | Carnes    |
+| Aceite de Oliva    | Cocina    |
+| Botellas de Agua   | Bebidas   |
+| Café               | Bebidas   |
+| Cerveza            | Bebidas   |
+| Huevos             | Lácteos   |
+| Leche              | Lácteos   |
+| Queso              | Lácteos   |
+| Yogurt             | Lácteos   |
+| Cepillo de Dientes | Higiene   |
+| Jabón de Baño      | Higiene   |
+| Detergente         | Limpieza  |
+| Pan                | Panadería |
+| Galletas           | Snacks    |
+| Tomates            | Verduras  |
+| Papel Higiénico    | Hogar     |
+| Sopa enlatada      | Conservas |
++--------------------+-----------+
+sqlite>
+
+sqlite> SELECT SUM(p.precio * v.cantidad) AS total_precio FROM productos p JOIN ventas v ON p.id = v.id_producto WHERE v.fecha = '2024-01-19';
++-------------+
+| total_precio|
++-------------+
+| 30.1        |
++-------------+
+sqlite>
+
+sqlite> SELECT * FROM productos WHERE categoria != 'Higiene';
++----+--------------------+-----------+--------+
+| id |       nombre       | categoria | precio |
++----+--------------------+-----------+--------+
+| 1  | Arroz              | Alimentos | 2.5    |
+| 2  | Leche              | Lácteos   | 1.8    |
+| 3  | Pan                | Panadería | 1.2    |
+| 4  | Manzanas           | Frutas    | 3.0    |
+| 5  | Pollo              | Carnes    | 5.5    |
+| 6  | Huevos             | Lácteos   | 1.0    |
+| 7  | Yogurt             | Lácteos   | 2.0    |
+| 8  | Tomates            | Verduras  | 2.2    |
+| 9  | Queso              | Lácteos   | 4.0    |
+| 10 | Cereal             | Desayuno  | 3.5    |
+| 11 | Papel Higiénico    | Hogar     | 1.5    |
+| 13 | Detergente         | Limpieza  | 2.8    |
+| 14 | Galletas           | Snacks    | 1.7    |
+| 15 | Aceite de Oliva    | Cocina    | 4.5    |
+| 16 | Café               | Bebidas   | 5.0    |
+| 17 | Sopa enlatada      | Conservas | 2.3    |
+| 19 | Botellas de Agua   | Bebidas   | 1.0    |
+| 20 | Cerveza            | Bebidas   | 3.8    |
++----+--------------------+-----------+--------+
+sqlite>
+
+sqlite> SELECT categoria, COUNT(*) AS total_productos FROM productos GROUP BY categoria;
++-----------+----------------+
+| categoria | total_productos|
++-----------+----------------+
+| Alimentos | 1              |
+| Bebidas   | 3              |
+| Carnes    | 1              |
+| Cocina    | 1              |
+| Conservas | 1              |
+| Desayuno  | 1              |
+| Frutas    | 1              |
+| Higiene   | 2              |
+| Hogar     | 1              |
+| Lácteos   | 4              |
+| Limpieza  | 1              |
+| Panadería | 1              |
+| Snacks    | 1              |
+| Verduras  | 1              |
++-----------+----------------+
+sqlite>
+
+sqlite> SELECT * FROM productos WHERE precio = (SELECT AVG(precio) FROM productos);
++----+--------+-----------+--------+
+| id | nombre | categoria | precio |
++----+--------+-----------+--------+
+sqlite>
+
+sqlite> SELECT fecha, SUM(p.precio * v.cantidad) AS total_precio FROM productos p JOIN ventas v ON p.id = v.id_producto GROUP BY fecha;
++------------+-------------+
+|   fecha    | total_precio|
++------------+-------------+
+| 2024-01-17 | 23.6        |
+| 2024-01-18 | 25.4        |
+| 2024-01-19 | 30.1        |
+| 2024-01-20 | 7.2         |
++------------+-------------+
+sqlite>
+
+sqlite> SELECT * FROM productos WHERE nombre LIKE '%o';
++----+--------+-----------+--------+
+| id | nombre | categoria | precio |
++----+--------+-----------+--------+
+| 5  | Pollo  | Carnes    | 5.5    |
+| 10 | Cereal | Desayuno  | 3.5    |
+| 16 | Café   | Bebidas   | 5.0    |
++----+--------+-----------+--------+
+sqlite>
+
+sqlite> SELECT p.id, p.nombre FROM productos p JOIN ventas v ON p.id = v.id_producto GROUP BY p.id HAVING COUNT(DISTINCT v.fecha) > 1;
++----+----------+
+| id |  nombre  |
++----+----------+
+| 6  | Huevos   |
+| 14 | Galletas |
+| 16 | Café     |
++----+----------+
+sqlite>
+
+sqlite> SELECT * FROM productos WHERE categoria LIKE 'L%';
++----+--------+-----------+--------+
+| id | nombre | categoria | precio |
++----+--------+-----------+--------+
+| 2  | Leche  | Lácteos   | 1.8    |
+| 6  | Huevos | Lácteos   | 1.0    |
+| 7  | Yogurt | Lácteos   | 2.0    |
+| 9  | Queso  | Lácteos   | 4.0    |
+| 13 | Detergente | Limpieza | 2.8 |
++----+--------+-----------+--------+
+sqlite>
+
+sqlite> SELECT p.id, p.nombre, SUM(v.cantidad) AS total_vendido FROM productos p JOIN ventas v ON p.id = v.id_producto WHERE v.fecha = '2024-01-17' GROUP BY p.id;
++----+----------+---------------+
+| id |  nombre  | total_vendido |
++----+----------+---------------+
+| 1  | Arroz    | 5             |
+| 2  | Leche    | 3             |
+| 4  | Manzanas | 2             |
+| 5  | Pollo    | 1             |
++----+----------+---------------+
+sqlite>
+
+sqlite> SELECT * FROM productos WHERE LENGTH(nombre) >= 5;
++----+------------------+-----------+--------+
+| id |      nombre      | categoria | precio |
++----+------------------+-----------+--------+
+| 1  | Arroz           | Alimentos | 2.5    |
+| 4  | Manzanas        | Frutas    | 3.0    |
+| 6  | Huevos          | Lácteos   | 1.0    |
+| 8  | Tomates         | Verduras  | 2.2    |
+| 9  | Queso           | Lácteos   | 4.0    |
+| 10 | Cereal          | Desayuno  | 3.5    |
+| 11 | Papel Higiénico | Hogar     | 1.5    |
+| 12 | Cepillo de Dientes | Higiene | 2.0   |
+| 13 | Detergente      | Limpieza  | 2.8    |
+| 14 | Galletas        | Snacks    | 1.7    |
+| 15 | Aceite de Oliva | Cocina    | 4.5    |
+| 16 | Café            | Bebidas   | 5.0    |
+| 17 | Sopa enlatada   | Conservas | 2.3    |
+| 18 | Jabón de Baño   | Higiene   | 1.2    |
+| 19 | Botellas de Agua | Bebidas  | 1.0    |
+| 20 | Cerveza         | Bebidas   | 3.8    |
++----+------------------+-----------+--------+
+sqlite>
+
+sqlite> SELECT * FROM productos WHERE precio > (SELECT MAX(precio) FROM productos);
++----+--------+-----------+--------+
+| id | nombre | categoria | precio |
++----+--------+-----------+--------+
+sqlite>
 ```
 - Encontrar los productos con un precio entre 3 y 4.
 
