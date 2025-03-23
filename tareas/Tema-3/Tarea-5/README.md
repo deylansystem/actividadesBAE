@@ -4,6 +4,8 @@
 
 creación y manipulación de una base de datos SQLite3 desde la línea de comandos_.
 
+> NOTA IMPORTANTE: PROFESOR SQLITE POR LO MENOS EN MI ORDENADO NO FUNCIONAN LAS EXPRESIONES REGULARES COMO DEBERIA FUNCIONAR, SOLO FUNCIONAN LAS QUE NO SON COMPLEJAS, ALGO PASA CON SQLITE
+
 ## Ejercicio 5
 
 ### Paso 0: Creación de la BBDD
@@ -260,6 +262,7 @@ sqlite>
 
 ```
 ### Seleccionar los libros cuyo título contiene la palabra "SQL":
+> NINGUN LIBRO CUMPLE ESTA CONDICION POR ESO NO SE DEVUELVE NADA
 ```sh
 sqlite> SELECT *
 FROM libro
@@ -268,6 +271,7 @@ sqlite>
 
 ```
 ### Obtener todos los autores cuyo nombre termina con "ez":
+> NINGUN AUTOR CUMPLE ESTA CONDICION POR ESO NO SE DEVUELVE NADA
 ```sh
 sqlite> SELECT *
 FROM autor
@@ -414,6 +418,7 @@ sqlite> SELECT * FROM libro WHERE editorial REGEXP '^[pP]';
 sqlite> 
 ```
 ### Obtener todos los autores cuyo nombre tiene exactamente 6 caracteres:
+> NINGUN AUTOR CUMPLE ESTA CONDICION YA QUE NOMBRE Y APELLIDO NO ESTAN SEPARADOS EN CAMBIOS INDEPENDIENTES POR ESO NO SE DEVUELVE NADA
 ```sh
 sqlite> SELECT *
 FROM autor
@@ -421,6 +426,7 @@ WHERE nombre REGEXP '^.{6}$';
 sqlite> 
 ```
 ### Seleccionar los libros cuyo título contiene al menos un número:
+> NINGUN LIBRO CUMPLE ESTA CONDICION POR ESO NO SE DEVUELVE NADA
 ```sh
 sqlite> SELECT * FROM libro WHERE titulo REGEXP '[0-9]';
 sqlite> 
@@ -437,7 +443,9 @@ sqlite> SELECT * FROM autor WHERE nombre REGEXP '^[aeiouAEIOU]';
 sqlite> 
 ```
 ### Obtener todos los autores cuyo nombre no contiene espacios en blanco:
+> NINGUN AUTOR CUMPLE ESTA CONDICION POR ESO NO SE DEVUELVE NADA
 ```sh
+sqlite> SELECT * FROM autor WHERE nombre NOT REGEXP ' ';
 ```
 ### Seleccionar los libros cuyo título termina con una vocal:
 ```sh
@@ -458,6 +466,7 @@ sqlite> SELECT * FROM libro WHERE titulo REGEXP '[aeiouAEIOU]$';
 sqlite> 
 ```
 ### Obtener todos los autores cuyo nombre contiene la secuencia "er":
+> NINGUN AUTOR CUMPLE ESTA CONDICION POR ESO NO SE DEVUELVE NADA
 ```sh
 SELECT *
 FROM autor
@@ -646,11 +655,20 @@ sqlite> SELECT * FROM libro WHERE titulo NOT REGEXP 'Science';
 sqlite> 
 ```
 ### Obtener todos los autores cuyo nombre tiene al menos una letra repetida consecutivamente:
-```sh
-SELECT *
-FROM autor
-WHERE nombre REGEXP '([A-Za-z])\\1';
-
+> SE SUPONE QUE ESTA DEBERIA DEVOLVERME EL RESULTADO PERO NO SE POR QUE NO FUNCIONA Y YA ME ESTA ROMPIENDO LA PACIENCIA ASI QUE TE LA PONGO PARA DISCUTIRLA EN CLASE
+```sql
+SELECT * FROM autor WHERE nombre REGEXP '([A-Za-z])\\1';
+```
+> LA QUE LOGRE QUE ME FUNCIONE ES ESTA
+```sql
+sqlite> SELECT * FROM autor
+WHERE lower(nombre) REGEXP 'aa|bb|cc|dd|ee|ff|gg|hh|ii|jj|kk|ll|mm|nn|oo|pp|qq|rr|ss|tt|uu|vv|ww|xx|yy|zz';
++----+---------------+
+| id |    nombre     |
++----+---------------+
+| 3  | George Orwell |
++----+---------------+
+sqlite> 
 ```
 ### Obtener todos los autores cuyo nombre empieza con "M" o termina con "n":
 ```sh
