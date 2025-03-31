@@ -5,7 +5,7 @@
 
 creación y manipulación de una base de datos SQLite3 desde la línea de comandos.
 
-## Ejercicio 2
+## Tarea 2
 
 
 ### Paso 1: Crear una tabla con un campo de cada tipo
