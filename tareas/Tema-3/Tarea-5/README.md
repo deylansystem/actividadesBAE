@@ -5,7 +5,7 @@
 creación y manipulación de una base de datos SQLite3 desde la línea de comandos_.
 
 
-## Ejercicio 5
+## Tarea 5
 
 ### Paso 0: Creación de la BBDD
 
