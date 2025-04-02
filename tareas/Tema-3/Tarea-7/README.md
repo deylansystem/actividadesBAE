@@ -33,7 +33,7 @@ sqlite> SELECT AVG(c.precio) FROM ventas v JOIN coches c ON v.id_coche = c.id_co
 | 28777.7777777778 |
 +------------------+
 
-sqlite> SELECT cl.nombre, c.modelo, c.precio FROM ventas v JOIN coches c ON v.id_coche = c.id_coche JOIN clientes cl ON v.id_cliente = cl.id_cliente WHERE c.precio > (SELECT AVG(precio) FROM coches);
+sqlite> SELECT cl.nombre, c.modelo, c.precio FROM ventas v, coches c, clientes cl WHERE v.id_coche = c.id_coche AND v.id_cliente = cl.id_cliente AND c.precio > (SELECT AVG(precio) FROM coches);
 +-----------------+----------------+---------+
 |     nombre      |     modelo     | precio  |
 +-----------------+----------------+---------+
