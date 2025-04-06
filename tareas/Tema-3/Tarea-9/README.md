@@ -46,7 +46,7 @@ sqlite> SELECT a.nombre AS nombre_alumno, c.materia FROM Inscripciones AS i JOIN
 ```
 
 ## - Obtener el nombre del alumno, la edad y el nombre del profesor de las clases en las que está inscrito.
-```sql
+```sql 
 sqlite> SELECT a.nombre AS nombre_alumno, a.edad AS edad_alumno,  c.profesor FROM Inscripciones AS i JOIN Alumnos AS a ON i.id_alumno = a.id JOIN Clases AS c ON i.id_clase = c.id;
 +---------------+-------------+------------+
 | nombre_alumno | edad_alumno |  profesor  |
