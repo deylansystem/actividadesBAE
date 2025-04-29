@@ -1,6 +1,7 @@
 
 -- 1. Consultas Básicas (8 consultas - 1.6 puntos)
 -- Listar todos los libros disponibles
+///sql
 SELECT * FROM libro WHERE disponible != 0;
 +----+-----------------------------------+------------------------+-----------------+-----------------+------------+
 | id |              titulo               |         autor          |     genero      | año_publicacion | disponible |
@@ -11,7 +12,9 @@ SELECT * FROM libro WHERE disponible != 0;
 | 7  | Ficciones                         | Jorge Luis Borges      | Cuentos         | 1944            | 1          |
 | 9  | El amor en los tiempos del cólera | Gabriel García Márquez | Romance         | 1985            | 1          |
 +----+-----------------------------------+------------------------+-----------------+-----------------+------------+
+///
 -- Mostrar socios de Madrid ordenados por apellido
+///sql
 SELECT * FROM socio WHERE ciudad REGEXP "^Madrid*" ORDER BY apellido1, apellido2 ASC;
 +----+--------+-----------+-----------+--------+------------+-----------+
 | id | nombre | apellido1 | apellido2 | ciudad | fecha_alta | categoria |
@@ -19,6 +22,7 @@ SELECT * FROM socio WHERE ciudad REGEXP "^Madrid*" ORDER BY apellido1, apellido2
 | 1  | Laura  | García    | Martínez  | Madrid | 2020-03-15 | A         |
 | 5  | Elena  | Martín    | Díaz      | Madrid | 2023-02-18 | B         |
 +----+--------+-----------+-----------+--------+------------+-----------+
+///
 -- Libros publicados después de 1950
 SELECT * FROM libro WHERE año_publicacion > 1950;
 +----+-----------------------------------+------------------------+-----------------+-----------------+------------+
