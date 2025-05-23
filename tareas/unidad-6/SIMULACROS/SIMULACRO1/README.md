@@ -176,13 +176,13 @@ CALL resumen_cliente(1);
 	•	Permite optimizaciones por parte del motor de MySQL.
 
 📌 Diferencias entre función y procedimiento
-
+----------------------------------------------------------------------------------------------------
 | Característica      | Función                           | Procedimiento                          |
 |---------------------|-----------------------------------|----------------------------------------|
 | Retorno             | Devuelve un valor                 | No retorna valor directamente          |
 | Uso en consultas    | Sí                                | No (no se puede usar en SELECT)        |
 | Objetivo            | Calcular y devolver un resultado  | Ejecutar una acción o conjunto         |
-
+----------------------------------------------------------------------------------------------------
 📌 ¿Qué impacto tienen los índices?
 	•	Mejoran el rendimiento de búsqueda y filtros.
 	•	Reducen el tiempo de respuesta.
