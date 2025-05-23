@@ -99,11 +99,12 @@ JOIN productos p ON v.producto_id = p.id;
 
 📊 Resultado esperado:
 
-venta_id	cliente	producto	fecha	cantidad	total
-1	Ana Pérez	Laptop	2024-05-01	1	1200.00
-2	Ana Pérez	Teclado	2024-05-12	2	100.00
-3	Luis Gómez	Monitor	2024-05-13	1	300.00
-4	Carla Ruiz	Teclado	2024-05-14	1	50.00
+| venta_id | cliente     | producto | fecha       | cantidad | total   |
+|----------|-------------|----------|-------------|----------|---------|
+| 1        | Ana Pérez   | Laptop   | 2024-05-01  | 1        | 1200.00 |
+| 2        | Ana Pérez   | Teclado  | 2024-05-12  | 2        | 100.00  |
+| 3        | Luis Gómez  | Monitor  | 2024-05-13  | 1        | 300.00  |
+| 4        | Carla Ruiz  | Teclado  | 2024-05-14  | 1        | 50.00   |
 
 
 
@@ -152,9 +153,10 @@ Ejemplo de ejecución:
 
 CALL resumen_cliente(1);
 
-nombre	fecha	producto	cantidad	total
-Ana Pérez	2024-05-01	Laptop	1	1200.00
-Ana Pérez	2024-05-12	Teclado	2	100.00
+| nombre     | fecha       | producto | cantidad | total   |
+|------------|-------------|----------|----------|---------|
+| Ana Pérez  | 2024-05-01  | Laptop   | 1        | 1200.00 |
+| Ana Pérez  | 2024-05-12  | Teclado  | 2        | 100.00  |
 
 
 
@@ -189,7 +191,6 @@ Ana Pérez	2024-05-12	Teclado	2	100.00
 	•	Cuando se requiere ejecutar lógica automáticamente al insertar, actualizar o eliminar datos.
 	•	Ej: registrar automáticamente en un historial cuando se modifica una tabla.
 
-⸻
 ```
 ## 📝 Preguntas Prácticas
 
@@ -217,16 +218,16 @@ BEGIN
 END //
 
 DELIMITER ;
-
+```
 ✅ Índice en producto_id
-
+```sql
 CREATE INDEX idx_producto_id ON ventas(producto_id);
-
+```
 ✅ ¿Qué pasa si insertas una venta con cliente_id inexistente?
 	•	Error de integridad referencial: Cannot add or update a child row: a foreign key constraint fails.
 
 ✅ Modifica la vista para incluir ciudad
-
+```sql
 CREATE OR REPLACE VIEW vista_ventas AS
 SELECT
     v.id AS venta_id,
@@ -239,9 +240,9 @@ SELECT
 FROM ventas v
 JOIN clientes c ON v.cliente_id = c.id
 JOIN productos p ON v.producto_id = p.id;
-
+```
 ✅ Validación de existencia de cliente
-
+```sql
 DELIMITER //
 
 CREATE PROCEDURE resumen_cliente_validado(IN id_cliente INT)
@@ -269,4 +270,4 @@ BEGIN
 END //
 
 DELIMITER ;
-
+```
