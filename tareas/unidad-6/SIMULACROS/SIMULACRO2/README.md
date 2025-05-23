@@ -1,6 +1,6 @@
 <div align="justify">
 
-# <img src=../../../../../images/computer.png width="40"> Code, Learn & Practice("Simulacro de bbdd 🧪: Consultas, Índices, Vistas, Funciones y Procedimientos")
+# Code, Learn & Practice("Simulacro de bbdd 🧪: Consultas, Índices, Vistas, Funciones y Procedimientos")
 
 <div align="center">
 <img src="https://www.seguridadkimika.eus/wp-content/uploads/2017/10/sirenas-seguridad-kimika-simulacro.jpg" width="200px"/>
@@ -11,83 +11,6 @@
 Como analista de datos en una universidad, se te ha encargado la explotación de una base de datos que permita gestionar estudiantes, profesores, cursos y matrículas. Además, deberás demostrar habilidades en consultas SQL, índices, vistas, procedimientos y funciones. Si la base de datos no estuvira creada, a continuación tienes el [init.sql](docker-init/init.sql).
 
 ## Base de datos en docker
-
-Crea una carpeta y añade el fichero **docker-compose.yml** y el directorio **docker-init**.
-
-Ejecuta a continuación el siguiente comando:
-
-```sql
-docker compose up -d 
-```
-
-Obtendrar una salida similar a la siguiente:
-
-```console
- docker compose up -d   
-[+] Running 2/2
- ✔ Container adminer_container  Started                                                                                                             0.9s 
- ✔ Container mysql_container    Started    
-```
-
-A continuación ejecuta el siguiente comando:
-
-```console
-docker exec -it mysql_container mysql -u root -p
-```
-
-Indica el *password* que es **bae**.
-
-A continuación debes de estar dentro de la consola:
-
-```sql
-....
-....
-....
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql>
-```
-
-> **IMPORTANTE**: *Para salir de la consola se debe de ejecutar* ***exit***.
-
-Verifica las bases de datos que tienes cargadas: (*SHOW DATABASES;*)
-
-```console
-SHOW DATABASES;
-+--------------------+
-| Database           |
-+--------------------+
-| bae                |
-| information_schema |
-| mysql              |
-| performance_schema |
-| sys                |
-| universidad        |
-+--------------------+
-6 rows in set (0.00 sec)
-```
-
-Usa la base de datos **universidad**: (*use universidad;*)
-
-```console
-use universidad;
-Reading table information for completion of table and column names
-You can turn off this feature to get a quicker startup with -A
-
-Database changed
-```
-
-También podemos acceder a través del navegador. Para ello utilizaremos **Adminer** porque *simula la línea de comandos, y nos ayuda a aprender*. Una vez que accedas a [http://localhost:8099](http://localhost:8099), Adminer te pedirá los siguientes datos:
-
-> Puedes consultar la documentación [aquí](https://www.adminer.org/en/).
-
-- **Sistema**: `MySQL`
-- **Servidor**: `db`  
-  *Es el nombre del servicio del contenedor MySQL dentro del mismo `docker-compose` (Adminer y MySQL están en la misma red `db-network`).*
-- **Usuario**: `bae`
-- **Contraseña**: `bae`
-
-> ***Lee atentamente cada una de los puntos y cuestiones y realiza***.
 
 ## 🔎 Parte 1: Consultas SQL
 
