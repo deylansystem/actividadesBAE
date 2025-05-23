@@ -98,14 +98,14 @@ JOIN clientes c ON v.cliente_id = c.id
 JOIN productos p ON v.producto_id = p.id;
 
 📊 Resultado esperado:
-
+------------------------------------------------------------------------
 | venta_id | cliente     | producto | fecha       | cantidad | total   |
 |----------|-------------|----------|-------------|----------|---------|
 | 1        | Ana Pérez   | Laptop   | 2024-05-01  | 1        | 1200.00 |
 | 2        | Ana Pérez   | Teclado  | 2024-05-12  | 2        | 100.00  |
 | 3        | Luis Gómez  | Monitor  | 2024-05-13  | 1        | 300.00  |
 | 4        | Carla Ruiz  | Teclado  | 2024-05-14  | 1        | 50.00   |
-
+------------------------------------------------------------------------
 
 
 ```
@@ -152,11 +152,12 @@ DELIMITER ;
 Ejemplo de ejecución:
 
 CALL resumen_cliente(1);
-
+------------------------------------------------------------
 | nombre     | fecha       | producto | cantidad | total   |
 |------------|-------------|----------|----------|---------|
 | Ana Pérez  | 2024-05-01  | Laptop   | 1        | 1200.00 |
 | Ana Pérez  | 2024-05-12  | Teclado  | 2        | 100.00  |
+------------------------------------------------------------
 
 
 
