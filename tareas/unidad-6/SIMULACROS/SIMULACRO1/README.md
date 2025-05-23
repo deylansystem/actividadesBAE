@@ -66,7 +66,7 @@ INSERT INTO ventas (id, cliente_id, producto_id, fecha, cantidad) VALUES
 (4, 3, 2, '2024-05-14', 1);
 
 
-⸻
+
 ```
 ## 🔍 Parte 2: Creación de Índices
 
@@ -80,7 +80,7 @@ CREATE INDEX idx_fecha ON ventas(fecha);
 	•	idx_ciudad optimiza búsquedas por ciudad en clientes.
 	•	idx_fecha mejora las búsquedas por fecha en ventas, comunes en informes por periodos.
 
-⸻
+
 ```
 ## 👁️ Parte 3: Crear una Vista
 
@@ -106,7 +106,7 @@ venta_id	cliente	producto	fecha	cantidad	total
 4	Carla Ruiz	Teclado	2024-05-14	1	50.00
 
 
-⸻
+
 ```
 ## 🧮 Parte 4: Crear una Función
 ```sql
@@ -126,7 +126,7 @@ Ejemplo de uso:
 SELECT calcular_total(1200.00, 2); -- Resultado: 2400.00
 
 
-⸻
+
 ```
 ## ⚙️ Parte 5: Crear un Procedimiento
 ```sql
@@ -157,7 +157,7 @@ Ana Pérez	2024-05-01	Laptop	1	1200.00
 Ana Pérez	2024-05-12	Teclado	2	100.00
 
 
-⸻
+
 ```
 ```text
 ❓ Preguntas Teóricas
@@ -174,10 +174,11 @@ Ana Pérez	2024-05-12	Teclado	2	100.00
 
 📌 Diferencias entre función y procedimiento
 
-Característica	Función	Procedimiento
-Retorno	Devuelve un valor	No retorna valor directamente
-Uso en consultas	Sí	No (no se puede usar en SELECT)
-Objetivo	Calcular y devolver un resultado	Ejecutar una acción o conjunto
+| Característica      | Función                           | Procedimiento                          |
+|---------------------|-----------------------------------|----------------------------------------|
+| Retorno             | Devuelve un valor                 | No retorna valor directamente          |
+| Uso en consultas    | Sí                                | No (no se puede usar en SELECT)        |
+| Objetivo            | Calcular y devolver un resultado  | Ejecutar una acción o conjunto         |
 
 📌 ¿Qué impacto tienen los índices?
 	•	Mejoran el rendimiento de búsqueda y filtros.
